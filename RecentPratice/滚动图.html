@@ -1,0 +1,59 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+<style>
+    #dodo {width:400px;height:1000px;position:relative;margin-left:300px;overflow: hidden;}
+    #dodo ul{position:absolute;top:0px;}
+    #dodo ul li{width:400px;height:250px;list-style: none;}
+    #up   {margin-left:0px;}
+    #down { margin-left:20px;}    
+</style>
+</head>
+<body>
+    <button id="up">向上移动</button>
+    <button id="down">向下移动</button>
+    <div id="dodo">
+        <ul>
+            <li><img src="img/share21.jpg"></li>
+            <li><img src="img/share22.jpg"></li>
+            <li><img src="img/share23.jpg"></li>
+            <li><img src="img/share24.jpg"></li>
+        </ul>
+    </div>
+<script>
+        window.onload=function(){
+         var oup=document.getElementById('up');
+         var odown=document.getElementById('down');
+         var oUl=document.querySelector('ul');
+         var oli=document.querySelectorAll('li');
+         var time=null;
+         var speed;
+         oUl.innerHTML= oUl.innerHTML+ oUl.innerHTML;               //将图片内容双倍化，只有双倍的图片才能使滚动效果显示出来。
+        //alert(oUl.offsetTop);
+        //oul.style.height=oli[0].offsetHeight*oli.length+'px';     //加上这个语句后，画面不能滚动了。未知原因
+         function move(){
+                oUl.style.top=oUl.offsetTop+speed+'px';
+                if(oUl.offsetTop>0)                                //开始向下滚动之后，需要从div高度一半的位置开始，这样看不出露出来的那部分
+                {
+                    oUl.offsetTop=-offsetHeight/2+'px';
+                }
+                if(oUl.offsetTop<-offsetHeight/2)                  //向上滚动到div高度的一半把整个ul拉回
+                {
+                    oUl.offsetTop=0+'px';
+                }
+            }
+         time=setInterval(move,200);
+         oup.onclick=function(){speed=-50;};         
+         odown.onclick=function(){speed=10;};
+         oUl.onmouseover=function (){
+            clearInterval(time);
+           }
+         oUl.onmouseout=function(){
+             time=setInterval(move,200);}
+        }
+</script>
+</body>
+</html>

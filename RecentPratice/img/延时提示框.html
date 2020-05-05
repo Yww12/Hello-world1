@@ -1,0 +1,46 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+</head>
+<style>
+    div{float:left;margin:10px;}
+    #picture
+    {
+        height:50px;
+        width:50px;
+        background-color:red;
+    }
+    #floatwindow
+    {
+        height:250px;
+        width:150px;
+        background-color:blue;
+        display: none;
+    }
+</style>
+<body>
+    <div id="picture"></div>
+    <div id="floatwindow"></div>
+<script>
+    var time1=null;
+    var odiv1=document.getElementById('picture');
+    var odiv2=document.getElementById('floatwindow');
+    window.onload=function(){
+        odiv2.onmouseover=odiv1.onmouseover=function() /*移入大块或者小块，大块都显示，并关闭延时计时器*/
+        {
+            clearTimeout(time1);
+            odiv2.style.display='block';
+        };
+  
+        odiv2.onmouseout=odiv1.onmouseout=function(){  /*大块或者小块移开后设置0.5s延时，延时后才消失*/ 
+            time1=setTimeout(function(){
+            odiv2.style.display='none';
+        },500);
+        };
+    }
+</script>  
+</body>
+</html>
